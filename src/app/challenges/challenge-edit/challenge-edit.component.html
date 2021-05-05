@@ -1,1 +1,51 @@
-<p>challenge-edit works!</p>
+<div class="row">
+  <div class="col-xs-12 col-md-6 col-md-offset-3">
+    <!-- <div *ngIf="error" class="alert alert-danger">
+      <p>Incorrect employee ID! Please try again.</p>
+    </div> -->
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="title">Title</label>
+            <input
+              type="text"
+              id="title"
+              class="form-control"
+              formControlName="title"
+            />
+          </div>
+        </div>
+      </div>
+      <br />
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="description">Description</label>
+            <input
+              type="text"
+              id="description"
+              class="form-control"
+              formControlName="description"
+            />
+          </div>
+        </div>
+      </div>
+      <br />
+      <div class="row">
+        <div class="col-xs-12" formArrayName="tags">
+          <label for="tags"><h5>Tags</h5></label>
+        </div>
+        <div class="row">
+          <div class="col-xs-4" *ngFor="let tag of getTags(); let i = index">
+            {{ tag.value }} <a style="cursor: pointer">X</a>
+          </div>
+        </div>
+      </div>
+      <br />
+      <div>
+        <button type="submit" class="btn btn-primary">Save</button>
+      </div>
+    </form>
+  </div>
+</div>

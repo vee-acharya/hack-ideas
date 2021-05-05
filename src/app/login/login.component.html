@@ -1,1 +1,30 @@
-<p>login works!</p>
+<div class="row">
+  <div class="col-xs-12 col-md-6 col-md-offset-3">
+    <div *ngIf="error" class="alert alert-danger">
+      <p>Incorrect employee ID! Please try again.</p>
+    </div>
+    <form #loginForm="ngForm" (ngSubmit)="onLogin(loginForm)">
+      <div class="form-group">
+        <label for="empId">Employee ID</label>
+        <input
+          type="text"
+          id="empId"
+          class="form-control"
+          required
+          ngModel
+          name="empId"
+        />
+      </div>
+      <br />
+      <div>
+        <button
+          [disabled]="!loginForm.valid"
+          type="submit"
+          class="btn btn-primary"
+        >
+          Login
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
