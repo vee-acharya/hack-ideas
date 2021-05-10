@@ -12,6 +12,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ChallengeItemComponent } from './challenges/challenge-item/challenge-item.component';
 import { FooterComponent } from './footer/footer.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { FooterComponent } from './footer/footer.component';
     HomeComponent,
     ChallengeItemComponent,
     FooterComponent,
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,

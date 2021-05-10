@@ -6,6 +6,7 @@ import { ChallengeEditComponent } from './challenges/challenge-edit/challenge-ed
 import { ChallengesComponent } from './challenges/challenges.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 const appRoutes: Routes = [
   {
@@ -20,6 +21,14 @@ const appRoutes: Routes = [
     ],
   },
   { path: 'login', component: LoginComponent },
+  {
+    path: 'not-found',
+    component: PageNotFoundComponent,
+  },
+  {
+    path: '**',
+    redirectTo: '/not-found',
+  },
 ];
 
 @NgModule({
