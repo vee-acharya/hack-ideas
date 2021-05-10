@@ -2,26 +2,10 @@
 
 A web application which lets employees of an organisation to add/manage challenges for internal hackathons.
 
-## Development server
+To set-up this Angular application on your machine, you can either clone from my repository or download the application code in a zipped folder.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Prerequisites: Please ensure you have node installed on your machine. If not, you can download it from www.nodejs.org and follow the listed steps. To check if the installation was successful, you can run 'node -v' and 'npm -v' in a terminal.
 
-## Code scaffolding
+If you have a zip folder, unzip it at the location in your file system where you want to place the code, open the project directory in a code editor of your choice and run 'npm install' or 'npm i' in a terminal at your project's location. This will instruct the npm to install all the project related dependencies so that we can run the project without breaking it.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+After 'npm i' is executed successfully, run 'ng serve' in a terminal at your project's location. You should see a successful execution of this command and the URL to access the application, normally at port 4200.
