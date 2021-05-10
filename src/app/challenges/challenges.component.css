@@ -1,0 +1,15 @@
+.active-sort::after,
+.active-sort::selection,
+.active-sort:focus {
+  box-shadow: none;
+  background-color: rgb(3, 3, 121);
+}
+
+.challenges {
+  overflow: hidden;
+}
+
+.pagination {
+  position: fixed;
+  bottom: 18%;
+}

@@ -1,0 +1,12 @@
+.login-container {
+  padding: 50px 0px;
+}
+
+.welcome-text {
+  color: rgb(255, 123, 0);
+  font-size: 500%;
+}
+
+.welcome-description {
+  font-size: 300%;
+}

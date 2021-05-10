@@ -1,0 +1,9 @@
+.header {
+  border-bottom: 1px rgb(197, 197, 197) solid;
+  color: rgb(255, 123, 0);
+  margin: 5px 0;
+}
+
+.title:focus {
+  outline: none;
+}

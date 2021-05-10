@@ -1,1 +1,25 @@
 /* You can add global styles to this file, and also import other style files */
+:root {
+  --app-primary-color: rgb(0, 199, 17);
+}
+
+body {
+  background-color: rgb(245, 243, 243);
+}
+
+.app-primary-btn,
+.app-primary-btn:disabled,
+.app-primary-btn:hover,
+.app-primary-btn::after,
+.app-primary-btn::selection,
+.app-primary-btn:focus-within {
+  background-color: var(--app-primary-color);
+  border-color: var(--app-primary-color);
+  border-style: none;
+  box-shadow: none;
+}
+
+.app-primary-input:focus {
+  box-shadow: none;
+  border-color: black;
+}

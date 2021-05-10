@@ -1,0 +1,67 @@
+<div class="accordion-item mb-3">
+  <h2 class="accordion-header">
+    <button
+      #accordionTitle
+      class="accordion-button collapsed title-btn"
+      type="button"
+      (click)="
+        onToggle(accordionTitle, accordionDescription1, accordionDescription2)
+      "
+    >
+      {{ challenge.title }}&nbsp;&nbsp;
+      <span *ngIf="tagsPresent()"
+        >| &nbsp; <i class="fa fa-tags tag-icon"></i>&nbsp;&nbsp;</span
+      >
+      <ng-container *ngFor="let tag of challenge.tags">
+        <ng-container *ngIf="tag.value">
+          <span class="badge rounded-pill bg-dark">{{ tag.label }}</span>
+          &nbsp;
+        </ng-container>
+      </ng-container>
+    </button>
+  </h2>
+  <div
+    #accordionDescription1
+    class="accordion-collapse collapse description-area"
+  >
+    <div class="accordion-body">
+      <div class="mb-2">
+        {{ challenge.description }}
+      </div>
+
+      <div class="mt-2 meta-text">
+        Created on {{ getCreationDate() | date }}
+      </div>
+    </div>
+    <hr />
+  </div>
+  <div
+    #accordionDescription2
+    class="row accordion-collapse collapse action-area"
+  >
+    <div style="text-align: center" class="col-6 accordion-action-item">
+      <i
+        *ngIf="!isUpvoted()"
+        class="fa fa-heart-o"
+        style="cursor: pointer"
+        (click)="upvote()"
+      ></i>
+      <i
+        *ngIf="isUpvoted()"
+        class="fa fa-heart"
+        style="cursor: pointer"
+        (click)="downvote()"
+      ></i>
+      <span> {{ challenge.upvotes }} </span>
+    </div>
+    <div style="text-align: center" class="col-6 accordion-action-item">
+      <i class="fa fa-pencil"></i>&nbsp;
+      <span
+        style="cursor: pointer"
+        class="edit-challenge"
+        (click)="editChallenge(challenge.id)"
+        >Edit Details</span
+      >
+    </div>
+  </div>
+</div>
