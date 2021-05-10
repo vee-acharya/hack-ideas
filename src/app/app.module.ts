@@ -10,6 +10,8 @@ import { AppRoutingModule } from './app.routing.module';
 import { HomeComponent } from './home/home.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { ChallengeItemComponent } from './challenges/challenge-item/challenge-item.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +21,8 @@ import { HttpClientModule } from '@angular/common/http';
     ChallengesComponent,
     ChallengeEditComponent,
     HomeComponent,
+    ChallengeItemComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,

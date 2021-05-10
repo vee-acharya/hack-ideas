@@ -1,0 +1,17 @@
+.title-btn,
+.title-btn:focus {
+  box-shadow: none;
+  color: black;
+}
+
+.meta-text {
+  color: gray;
+}
+
+.tag-icon {
+  padding-top: 1px;
+}
+
+.accordion-action-item {
+  margin-bottom: 15px;
+}
