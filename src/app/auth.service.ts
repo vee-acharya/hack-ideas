@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  private loggedIn: boolean = false;
+  loggedIn!: boolean;
+  employeeId!: number;
 
   loginSuccessful = new Subject<boolean>();
 
@@ -15,7 +16,7 @@ export class AuthService {
     return this.loggedIn;
   }
 
-  login(empId: number) {
+  login(empId: number): Observable<boolean> {
     return this.http
       .get<number[]>(
         'https://hack-ideas-backend-default-rtdb.firebaseio.com/users.json'
@@ -24,6 +25,9 @@ export class AuthService {
         map((response: number[]) => {
           this.loggedIn = response.includes(empId);
           this.loginSuccessful.next(this.loggedIn);
+          if (this.loggedIn) {
+            this.employeeId = empId;
+          }
           return this.loggedIn;
         })
       );
