@@ -1,30 +1,39 @@
-<div class="row">
+<div class="row login-container">
   <div class="col-xs-12 col-md-6 col-md-offset-3">
     <div *ngIf="error" class="alert alert-danger">
-      <p>Incorrect employee ID! Please try again.</p>
+      <p>Incorrect Employee ID! Please try again.</p>
     </div>
     <form #loginForm="ngForm" (ngSubmit)="onLogin(loginForm)">
-      <div class="form-group">
-        <label for="empId">Employee ID</label>
+      <div class="form-floating mb-3">
         <input
           type="text"
           id="empId"
-          class="form-control"
+          class="form-control app-primary-input"
           required
           ngModel
           name="empId"
+          pattern="[1-9][0-9]*"
         />
+        <label for="empId">Employee ID</label>
       </div>
-      <br />
       <div>
         <button
           [disabled]="!loginForm.valid"
           type="submit"
-          class="btn btn-primary"
+          class="btn btn-primary app-primary-btn"
         >
-          Login
+          <strong>LOGIN</strong>
         </button>
       </div>
     </form>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12 col-md-8 col-md-offset-3">
+    <p class="welcome-text">Hello, coders!</p>
+    <p class="welcome-description">
+      Collaborate with your colleagues and bring innovative ideas
+      <i class="fa fa-lightbulb-o"></i> to life!
+    </p>
   </div>
 </div>

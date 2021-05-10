@@ -9,15 +9,13 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  error: boolean = false;
-  loggedIn: boolean = false;
+  error!: boolean;
 
   constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
     if (this.authService.isAuthenticated()) {
       this.authService.logout();
-      this.loggedIn = false;
     }
   }
 
@@ -26,11 +24,9 @@ export class LoginComponent implements OnInit {
       .login(+loginForm.value.empId)
       .subscribe((authenticated: boolean) => {
         if (authenticated) {
-          this.loggedIn = true;
           this.router.navigate(['/challenges']);
         } else {
           this.error = true;
-          this.loggedIn = false;
         }
       });
   }
