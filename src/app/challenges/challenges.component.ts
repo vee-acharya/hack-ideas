@@ -14,6 +14,10 @@ export class ChallengesComponent implements OnInit {
   @ViewChild('upvoteSort') upvoteSort!: ElementRef;
 
   public challenges: Challenge[] = [];
+  public fetchingChallenges!: boolean;
+
+  public error!: boolean;
+  public errorMessage!: string;
 
   public numberOfPages!: number;
   public paginatedChallenges!: Challenge[];
@@ -22,11 +26,20 @@ export class ChallengesComponent implements OnInit {
   constructor(private challengesService: ChallengesService) {}
 
   ngOnInit(): void {
-    this.challengesService.fetchChallenges().subscribe(response => {
-      this.challenges = response;
-      this.initPagination();
-      this.listenForPagination();
-    });
+    this.fetchingChallenges = true;
+    this.challengesService.fetchChallenges().subscribe(
+      response => {
+        this.fetchingChallenges = false;
+        this.challenges = response;
+        this.initPagination();
+        this.listenForPagination();
+      },
+      error => {
+        this.fetchingChallenges = false;
+        this.error = true;
+        this.errorMessage = 'Something went wrong. Please try again later.';
+      }
+    );
   }
 
   initPagination() {
@@ -39,6 +52,7 @@ export class ChallengesComponent implements OnInit {
   }
 
   createPaginationHTML(numPages: number) {
+    (<HTMLUListElement>document.querySelector('.pagination')).innerHTML = '';
     let pagesHtml = '';
     new Array(numPages).fill(1).forEach((_, index) => {
       pagesHtml =
@@ -136,6 +150,8 @@ export class ChallengesComponent implements OnInit {
     this.challenges = this.challenges.sort(
       (a, b) => b.creationDate - a.creationDate
     );
+    this.initPagination();
+    this.listenForPagination();
   }
 
   sortByUpvotes() {
@@ -148,5 +164,7 @@ export class ChallengesComponent implements OnInit {
       'active-sort'
     );
     this.challenges = this.challenges.sort((a, b) => b.upvotes - a.upvotes);
+    this.initPagination();
+    this.listenForPagination();
   }
 }

@@ -10,6 +10,7 @@ import { AuthService } from '../auth.service';
 })
 export class LoginComponent implements OnInit {
   error!: boolean;
+  errorMessage!: string;
 
   constructor(private authService: AuthService, private router: Router) {}
 
@@ -20,14 +21,20 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin(loginForm: NgForm) {
-    this.authService
-      .login(+loginForm.value.empId)
-      .subscribe((authenticated: boolean) => {
+    this.authService.login(+loginForm.value.empId).subscribe(
+      (authenticated: boolean) => {
         if (authenticated) {
           this.router.navigate(['/challenges']);
         } else {
           this.error = true;
+          this.errorMessage = 'Incorrect Employee ID! Please try again.';
         }
-      });
+      },
+      error => {
+        this.error = true;
+        this.errorMessage =
+          'Seems like there is a problem, We cannot connect you to the application. Please try again later.';
+      }
+    );
   }
 }

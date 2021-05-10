@@ -15,6 +15,11 @@ export class ChallengeEditComponent implements OnInit {
   editMode: boolean = false;
   challengeToBeEdited: Challenge = new Challenge();
 
+  public fetchingChallenge!: boolean;
+
+  public error!: boolean;
+  public errorMessage!: string;
+
   constructor(
     private route: ActivatedRoute,
     private challengesService: ChallengesService,
@@ -26,13 +31,20 @@ export class ChallengeEditComponent implements OnInit {
       this.challengeId = params.id;
       this.editMode = this.challengeId ? true : false;
       if (this.editMode) {
-        this.challengesService
-          .fetchChallengeById(this.challengeId)
-          .subscribe(response => {
+        this.fetchingChallenge = true;
+        this.challengesService.fetchChallengeById(this.challengeId).subscribe(
+          response => {
             const challenge = { ...response, id: this.challengeId };
             this.challengeToBeEdited = challenge as Challenge;
             this.initForm();
-          });
+            this.fetchingChallenge = false;
+          },
+          error => {
+            this.fetchingChallenge = false;
+            this.error = true;
+            this.errorMessage = 'Something went wrong. Please try again later.';
+          }
+        );
       }
     });
     this.initForm();
