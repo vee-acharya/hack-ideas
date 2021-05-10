@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -7,20 +8,26 @@ import { AuthService } from '../auth.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'],
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
   userAction: string = '';
+  private loginSubscription!: Subscription;
 
   constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
-    this.authService.loginSuccessful.subscribe((authenticated: boolean) => {
-      this.userAction = authenticated ? 'LOGOUT' : '';
-    });
+    this.loginSubscription = this.authService.loginSuccessful.subscribe(
+      (authenticated: boolean) => {
+        this.userAction = authenticated ? 'LOGOUT' : '';
+      }
+    );
   }
 
   onLogout() {
-    if (this.userAction === '') return;
     this.authService.logout();
     this.router.navigate(['/login']);
+  }
+
+  ngOnDestroy() {
+    this.loginSubscription.unsubscribe();
   }
 }

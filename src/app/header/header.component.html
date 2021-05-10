@@ -1,18 +1,21 @@
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-default header">
   <div class="container-fluid">
     <div class="navbar-header">
-      <h3>HACK IDEAS</h3>
+      <h3 style="cursor: pointer" class="title" routerLink="/challenges">
+        <strong>HACK <i class="fa fa-code"></i> IDEAS</strong>
+      </h3>
     </div>
 
     <div class="navbar-default">
       <div class="nav navbar-nav navbar-right">
-        <a style="cursor: pointer" (click)="onLogout()">{{ userAction }}</a>
+        <button
+          *ngIf="userAction !== ''"
+          class="btn btn-danger"
+          (click)="onLogout()"
+        >
+          {{ userAction }}
+        </button>
       </div>
     </div>
   </div>
 </nav>
-
-<!-- <div class="row">
-  <div class="col-md-8"></div>
-  <div class="col-md-4"></div>
-</div> -->
