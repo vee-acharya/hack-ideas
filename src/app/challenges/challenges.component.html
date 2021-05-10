@@ -1,22 +1,54 @@
-<div class="row">
-  <div class="col-md-10">
-    <h4>Challenges</h4>
-    <ul>
-      <li
-        style="margin-bottom: '5px'"
-        *ngFor="let challenge of challenges; let i = index"
+<div class="row justify-content-between challenges">
+  <div class="col-md-6 col-xs-12">
+    <button
+      class="btn btn-primary app-primary-btn"
+      [routerLink]="['/challenges', 'new']"
+    >
+      <strong>Add Challenge</strong>
+    </button>
+  </div>
+  <div class="col-md-6 col-xs-12" style="text-align: right">
+    <div class="btn-group"><strong>SORT :</strong>&nbsp;&nbsp;</div>
+    <div class="btn-group" role="group">
+      <button
+        #dateSort
+        type="button"
+        class="btn btn-primary date-sort"
+        (click)="sortByDate()"
       >
-        {{ challenge }}
-        <button
-          class="btn btn-secondary"
-          [routerLink]="['/challenges', i, 'edit']"
-        >
-          Edit
-        </button>
-      </li>
-    </ul>
+        <strong>By creation date</strong>
+      </button>
+      <button
+        #upvoteSort
+        type="button"
+        class="btn btn-primary upvote-sort"
+        (click)="sortByUpvotes()"
+      >
+        <strong>By upvotes</strong>
+      </button>
+    </div>
   </div>
 </div>
-<button class="btn btn-primary" [routerLink]="['/challenges', 'new']">
-  Add Challenge
-</button>
+<hr />
+<div class="row">
+  <div class="col-xs-12">
+    <div class="accordion">
+      <app-challenge-item
+        *ngFor="let challengeEl of paginatedChallenges"
+        [challenge]="challengeEl"
+      ></app-challenge-item>
+    </div>
+  </div>
+</div>
+
+<nav>
+  <ul class="pagination justify-content-center">
+    <!-- HTML created in class file. Will be inserted once component is initialized. -->
+  </ul>
+</nav>
+
+<div
+  *ngIf="challenges.length === 0"
+  class="spinner-border text-dark"
+  role="status"
+></div>
