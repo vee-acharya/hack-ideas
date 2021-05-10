@@ -1,50 +1,61 @@
 <div class="row">
   <div class="col-xs-12 col-md-6 col-md-offset-3">
-    <!-- <div *ngIf="error" class="alert alert-danger">
-      <p>Incorrect employee ID! Please try again.</p>
-    </div> -->
+    <div class="row mb-3">
+      <div class="col-xs-12">
+        <span
+          class="form-check form-switch"
+          *ngFor="let tag of challengeToBeEdited.tags"
+        >
+          <input
+            type="checkbox"
+            class="form-check-input"
+            [(ngModel)]="tag.value"
+            id="tag.id"
+          />
+          <label [for]="tag.id" class="form-check-label">{{ tag.label }}</label>
+        </span>
+      </div>
+    </div>
+
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
       <div class="row">
         <div class="col-xs-12">
-          <div class="form-group">
-            <label for="title">Title</label>
+          <div class="form-floating mb-3">
             <input
               type="text"
               id="title"
-              class="form-control"
+              class="form-control app-primary-input"
               formControlName="title"
+              required
             />
+            <label for="title">Title</label>
           </div>
         </div>
       </div>
-      <br />
       <div class="row">
         <div class="col-xs-12">
-          <div class="form-group">
-            <label for="description">Description</label>
-            <input
+          <div class="form-floating mb-3">
+            <textarea
               type="text"
               id="description"
-              class="form-control"
+              class="form-control app-primary-input"
               formControlName="description"
-            />
+              style="height: 250px"
+              required
+              maxlength="500"
+            ></textarea>
+            <label for="description">Description</label>
           </div>
         </div>
       </div>
-      <br />
-      <div class="row">
-        <div class="col-xs-12" formArrayName="tags">
-          <label for="tags"><h5>Tags</h5></label>
-        </div>
-        <div class="row">
-          <div class="col-xs-4" *ngFor="let tag of getTags(); let i = index">
-            {{ tag.value }} <a style="cursor: pointer">X</a>
-          </div>
-        </div>
-      </div>
-      <br />
       <div>
-        <button type="submit" class="btn btn-primary">Save</button>
+        <button
+          [disabled]="!form.valid"
+          type="submit"
+          class="btn btn-primary app-primary-btn"
+        >
+          Save
+        </button>
       </div>
     </form>
   </div>
